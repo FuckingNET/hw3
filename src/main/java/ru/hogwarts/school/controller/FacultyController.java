@@ -28,12 +28,12 @@ public class FacultyController {
 
     @PutMapping
     public ResponseEntity<Faculty> updateFaculty(@RequestBody Faculty faculty) {
-        return ResponseEntity.ok(facultyService.updateFaculty(faculty.getId(), faculty));
+        return ResponseEntity.ok(facultyService.updateFaculty(faculty));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Faculty> removeFaculty(@PathVariable Long id) {
-        return ResponseEntity.ok(facultyService.removeFaculty(id));
+    public void removeFaculty(@PathVariable Long id) {
+        facultyService.removeFaculty(id);
     }
 
     @GetMapping("filter/{color}")
