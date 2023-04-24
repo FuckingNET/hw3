@@ -20,7 +20,7 @@ public class StudentService {
     }
 
     public Student findStudent(Long id) {
-        return studentRepository.getById(id);
+        return studentRepository.findById(id).get();
     }
 
     public Student updateStudent(Student student) {
@@ -32,7 +32,7 @@ public class StudentService {
     }
 
     public Collection<Student> filterStudent(int age) {
-        return studentRepository.findAllByAgeContains(age);
+        return studentRepository.findAllByAgeLike(age);
     }
 
 }

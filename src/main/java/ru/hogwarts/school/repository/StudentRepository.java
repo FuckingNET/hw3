@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    List<Student> findAllByAgeContains(int age);
+    List<Student> findAllByAgeLike(int age);
 }
