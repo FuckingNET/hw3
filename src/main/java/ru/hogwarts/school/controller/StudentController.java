@@ -46,9 +46,19 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("filter/{age}")
-    public ResponseEntity<Collection<Student>> filterStudent(@PathVariable int age) {
+    @GetMapping("filter")
+    public ResponseEntity<Collection<Student>> filterStudent(@RequestParam int age) {
         return ResponseEntity.ok(studentService.filterStudent(age));
     }
 
+    @GetMapping
+    public ResponseEntity<Collection<Student>> findStudentBetween(@RequestParam int min,
+                                                                  @RequestParam int max) {
+        return ResponseEntity.ok(studentService.findStudentBetween(min, max));
+    }
+
+    @GetMapping("faculty/{faculty}")
+    public ResponseEntity<Collection<Student>> findStudentsByFaculty(@PathVariable String faculty) {
+        return ResponseEntity.ok(studentService.findStudentsByFaculty(faculty));
+    }
 }
