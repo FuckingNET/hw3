@@ -62,8 +62,18 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findStudentsByFaculty(faculty));
     }
 
-    @GetMapping("amount")
-    public long amountStudents() {
-        return studentService.amountStudents();
+    @GetMapping("/getCount")
+    public long getCount() {
+        return studentService.getCount();
+    }
+
+    @GetMapping("/getAvgAge")
+    public double getAvgAge() {
+        return studentService.getAvgAge();
+    }
+
+    @GetMapping("/getLastStudents")
+    public Collection<Student> getLastFiveStudents() {
+        return studentService.getLastFiveStudents();
     }
 }

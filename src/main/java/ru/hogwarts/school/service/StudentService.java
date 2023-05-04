@@ -44,7 +44,15 @@ public class StudentService {
         return studentRepository.findStudentsByFaculty_Name(faculty);
     }
 
-    public long amountStudents() {
+    public long getCount() {
         return studentRepository.count();
+    }
+
+    public double getAvgAge() {
+        return studentRepository.getAvgAge();
+    }
+
+    public Collection<Student> getLastFiveStudents() {
+        return studentRepository.getLastFiveStudents();
     }
 }
