@@ -61,4 +61,9 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> findStudentsByFaculty(@PathVariable String faculty) {
         return ResponseEntity.ok(studentService.findStudentsByFaculty(faculty));
     }
+
+    @GetMapping("amount")
+    public long amountStudents() {
+        return studentService.amountStudents();
+    }
 }

@@ -5,6 +5,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class StudentService {
@@ -41,5 +42,9 @@ public class StudentService {
 
     public Collection<Student> findStudentsByFaculty(String faculty) {
         return studentRepository.findStudentsByFaculty_Name(faculty);
+    }
+
+    public long amountStudents() {
+        return studentRepository.count();
     }
 }
