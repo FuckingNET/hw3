@@ -7,6 +7,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -52,5 +53,12 @@ public class StudentService {
     public Collection<Student> findStudentsByFaculty(String faculty) {
         logger.info("Was invoked method for find students by faculty");
         return studentRepository.findStudentsByFaculty_Name(faculty);
+    }
+
+    public Collection<Student> sortStudents() {
+        return studentRepository.findAll().stream()
+                .filter(student -> student.getName().startsWith("А"))
+                .sorted()
+                .toList();
     }
 }

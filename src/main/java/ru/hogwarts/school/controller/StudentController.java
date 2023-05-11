@@ -61,4 +61,9 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> findStudentsByFaculty(@PathVariable String faculty) {
         return ResponseEntity.ok(studentService.findStudentsByFaculty(faculty));
     }
+
+    @GetMapping("sortByAlphabet")
+    public ResponseEntity<Collection<Student>> sortStudents() {
+        return ResponseEntity.ok(studentService.sortStudents());
+    }
 }
