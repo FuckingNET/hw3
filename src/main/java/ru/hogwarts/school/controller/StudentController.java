@@ -63,7 +63,24 @@ public class StudentController {
     }
 
     @GetMapping("sortByAlphabet")
-    public ResponseEntity<Collection<Student>> sortStudents() {
+    public ResponseEntity<Collection<String>> sortStudents() {
         return ResponseEntity.ok(studentService.sortStudents());
+    }
+
+    @GetMapping("avgAge")
+    public ResponseEntity<Double> avgAgeStudents() {
+        return ResponseEntity.ok(studentService.avgAge());
+    }
+
+    @GetMapping("longestNameFaculty")
+    public ResponseEntity<String> longestNameFaculty() {
+        return ResponseEntity.ok(studentService.getLongestNameFaculty());
+    }
+
+    @GetMapping("task-4")
+    public Integer task4() {
+        studentService.task4();
+        studentService.task4Par();
+        return 0;
     }
 }
