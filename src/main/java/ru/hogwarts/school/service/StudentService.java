@@ -112,4 +112,55 @@ public class StudentService {
         logger.info("result: {}, time: {}", result, finish - start);
         return result;
     }
+
+    public void printAll() {
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students);
+
+        printStudent(students.get(0));
+        printStudent(students.get(1));
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            printStudent(students.get(2));
+            printStudent(students.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudent(students.get(4));
+            printStudent(students.get(5));
+        }).start();
+    }
+
+    private void printStudent(Student student) {
+        System.out.println(Thread.currentThread().getName() + " " + student);
+    }
+
+    public void printAllSync() {
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students);
+
+        printStudentSync(students.get(0));
+        printStudentSync(students.get(1));
+
+        new Thread(() -> {
+            printStudentSync(students.get(2));
+            printStudentSync(students.get(3));
+        }).start();
+
+        new Thread(() -> {
+            printStudentSync(students.get(4));
+            printStudentSync(students.get(5));
+        }).start();
+    }
+
+    private void printStudentSync(Student student) {
+        synchronized (this) {
+            System.out.println(Thread.currentThread().getName() + " " + student);
+        }
+    }
 }
