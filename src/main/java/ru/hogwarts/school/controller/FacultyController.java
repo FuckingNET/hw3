@@ -7,6 +7,7 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("faculty")
@@ -29,6 +30,11 @@ public class FacultyController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(faculty);
+    }
+
+    @GetMapping("/getAll")
+    public List<Faculty> getAll() {
+        return facultyService.getAll();
     }
 
     @PutMapping
@@ -58,7 +64,7 @@ public class FacultyController {
     }
 
     @GetMapping("student")
-    public ResponseEntity<Faculty> findFacultyByStudent(@RequestParam String name) {
+    public ResponseEntity<List<Faculty>> findFacultyByStudent(@RequestParam String name) {
         return ResponseEntity.ok(facultyService.findFacultyByStudent(name));
     }
 }
