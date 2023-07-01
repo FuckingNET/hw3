@@ -53,8 +53,8 @@ public class FacultyService {
         return facultyRepository.findFacultiesByColorIgnoreCaseOrNameIgnoreCase(color, name);
     }
 
-    public Faculty findFacultyByStudent(String name) {
-        return facultyRepository.findFacultyByStudents_Name(name);
+    public List<Faculty> findFacultyByStudent(String name) {
+        return facultyRepository.findFacultyByStudents_name(name);
     }
 
 }

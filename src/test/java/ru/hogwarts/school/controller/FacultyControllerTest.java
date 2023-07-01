@@ -63,4 +63,103 @@ class FacultyControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void filter_color_success() throws Exception {
+        //Подготовка входных данных
+        String name = "testName";
+        String color = "testColor";
+        FacultyCreationRequest request = new FacultyCreationRequest();
+        request.setName(name);
+        request.setColor(color);
+
+        String jsonData = new ObjectMapper().writeValueAsString(request);
+
+        //Подготовка ожидаемого результата
+        when(facultyService.filterFaculty(color)).thenReturn(Collections.emptyList());
+
+        //Начало теста
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/faculty/filter/testColor")
+                        .content(jsonData)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void filter_color_name_success() throws Exception {
+        //Подготовка входных данных
+        String name = "testName";
+        String color = "testColor";
+        FacultyCreationRequest request = new FacultyCreationRequest();
+        request.setName(name);
+        request.setColor(color);
+
+        String jsonData = new ObjectMapper().writeValueAsString(request);
+
+        //Подготовка ожидаемого результата
+        when(facultyService.filterFaculty(color, name)).thenReturn(Collections.emptyList());
+
+        //Начало теста
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/faculty")
+                        .param("name", name)
+                        .param("color", color)
+                        .content(jsonData)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void findByName_success() throws Exception {
+        //Подготовка входных данных
+        String name = "testName";
+        FacultyCreationRequest request = new FacultyCreationRequest();
+        request.setName(name);
+
+
+        String jsonData = new ObjectMapper().writeValueAsString(request);
+
+        //Подготовка ожидаемого результата
+        when(facultyService.findFacultyByStudent(name)).thenReturn(Collections.emptyList());
+
+        //Начало теста
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/faculty/student")
+                        .param("name", name)
+                        .content(jsonData)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void update_success() throws Exception {
+
+        //Подготовка входных данных
+        String name = "testName";
+        String color = "testColor";
+        FacultyCreationRequest request = new FacultyCreationRequest();
+        request.setName(name);
+        request.setColor(color);
+
+        Faculty faculty = new Faculty(name, color);
+
+
+        String jsonData = new ObjectMapper().writeValueAsString(request);
+
+        //Подготовка ожидаемого результата
+        when(facultyService.updateFaculty(faculty)).thenReturn(new Faculty());
+
+        //Начало теста
+        mockMvc.perform(MockMvcRequestBuilders
+                        .put("/faculty")
+                        .content(jsonData)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
 }
